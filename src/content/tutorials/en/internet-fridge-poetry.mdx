@@ -1,0 +1,146 @@
+---
+title: "Internet Fridge Poetry"
+description: "TK"
+category: "2.0"
+featuredImage: ../images/featured/postcard.jpg
+featuredImageAlt: "An old-style postcard reading 'Greetings from P5.JS 2.0'"
+relatedContent:
+  references:
+    - en/p5/loadfont
+    - en/p5font/texttomodel
+    - en/p5/basematerialshader
+    - en/p5/worldtoscreen
+authors:
+  - Kit Kuksenok
+  - Niktari Makagiansar
+---
+import EditableSketch from "../../../components/EditableSketch/index.astro";
+import Callout from "../../../components/Callout/index.astro";
+import SketchEmbed from "../../../components/SketchEmbed/index.astro";
+
+TK
+
+* remove author and make it a link to everybody
+
+* Hashtag
+
+* Changing versions
+
+* Update your code, or use compatibiltiy add-ons?
+
+* different sections
+
+* add curation links
+
+* ADD THE INSTANCE MODE EXAMPLE HERE WITH MULTIPLE SKETCHES ON THE PAGE / MULTIPLE WORDS - link to wiki
+
+
+
+1 Switch version
+
+
+
+2 write text
+
+
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+}
+
+function draw() {
+  background(255);
+  
+  translate(width/2, height/2);
+  
+  textAlign(CENTER);
+  textSize(100);
+  text("Hello, p5.js 2.0!", 0, 0);
+}
+
+
+
+2.5
+
+let bgcolor
+
+
+bgcolor = random([color(255,200,100), color(100,100,200)])
+
+
+  background(bgcolor)
+
+
+
+
+3 write text with var font
+
+  background(255, 10);
+  background(random(color(255,200,100), color(0,100,100)), 10);
+
+
+let font;
+
+async
+
+   font = await loadFont("https://fonts.googleapis.com/css2?family=Epilogue:wght@100..900&display=swap")
+
+}
+
+      textFont(font)
+
+  let pacing = sin(frameCount / 100)
+  textWeight(map(pacing, -1, 1, 100, 900))
+
+
+
+
+
+
+4 advanced text! woff2 library - p5.js is the community
+
+
+    <script src="https://cdn.jsdelivr.net/npm/p5.woff2@0.0.3/lib/p5.woff2.js"></script>
+
+
+
+
+5 shape
+
+
+
+function shapeText(word, x, y) {
+  
+  let contours = font.textToContours(word, x, y, { sampleFactor: 0.03 })
+  
+  beginShape()
+  for (const points of contours) {
+    beginContour()
+    for (let p of points) {
+      vertex(p.x, p.y)
+    }
+    endContour(CLOSE)
+  }
+  endShape()
+  
+}
+
+
+
+6 EXTRUDE
+
+  createCanvas(windowWidth, windowHeight, WEBGL)
+
+  remove translation
+
+
+function shapeText(word, x, y) {
+  let  pacing = sin(frameCount / 100)
+  
+  let geom = font.textToModel(word, x, y, { sampleFactor: 0.1, extrude: map(pacing, -1, 1, 100, 10) })
+  
+  model(geom)
+  
+}
+
+
